@@ -40,3 +40,39 @@ Na lista que você mandou, existem pastas como `.ruff_cache` e `.emergent`. Às 
 zip -r /root/projeto_completo.zip /app -x "*/.ruff_cache/*" "*/.emergent/*"
 ```
 Isso tornará o arquivo bem mais leve para baixar!
+
+
+Para acessar a pasta **root** (onde está o seu arquivo `.zip`) em vez da pasta **app**, você precisa parar o servidor e iniciá-lo dentro da pasta `/root`.
+
+Siga estes passos:
+
+### 1. Pare o servidor atual
+No terminal, aperte:
+**`Ctrl + C`**
+
+### 2. Vá para a pasta root
+Digite o comando:
+```bash
+cd /root
+```
+
+### 3. Inicie o servidor novamente
+Agora sim, inicie o servidor dentro de `/root`:
+```bash
+python3 -m http.server 9000
+```
+
+### 4. Acesse o link
+Abra o mesmo link de antes no seu navegador:
+
+👉 **[https://vscode-61af4420-1c16-4dca-8793-0eab368159d1.preview.emergentagent.com/proxy/9000/](https://vscode-61af4420-1c16-4dca-8793-0eab368159d1.preview.emergentagent.com/proxy/9000/)**
+
+---
+
+### O que mudou?
+Como você deu o comando `cd /root` antes de iniciar o Python, agora quando você abrir o link, ele vai listar os arquivos que estão em `/root` (como o `projeto.zip` ou `projeto_completo.zip`) em vez dos arquivos da pasta `/app`.
+
+**Dica rápida:** Se você quiser servir a pasta `/root` sem precisar sair da pasta `/app`, você pode usar este comando direto (funciona no Python 3.7+):
+```bash
+python3 -m http.server 9000 --directory /root
+```
